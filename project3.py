@@ -8,14 +8,14 @@ def parse_gwc(file_path):
     _, height_count, direction_count = header_vals
 
     # Sector frequencies and measurement heights
-    sector_frequencies = list(map(float, raw_lines[2].split()))
+    sector_frequencies = list(map(float, raw_lines[4].split()))
     altitude_list = list(map(float, raw_lines[3].split()))
 
     # Prepare storage
     results_dict = {int(alt): [] for alt in altitude_list}
 
-    # Data starts at line index 4: alternating A and k lines per direction
-    base_index = 4
+    # Data starts at line index 5: alternating A and k lines per direction
+    base_index = 5
     for dir_idx in range(direction_count):
         a_values = list(map(float, raw_lines[base_index + 2*dir_idx].split()))
         k_values = list(map(float, raw_lines[base_index + 2*dir_idx + 1].split()))
